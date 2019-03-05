@@ -36,7 +36,6 @@ $(document).ready(function() {
         for (i = 0; i < arr.length; i++) {
             var button = $("<button>");;
             button.text(arr[i]);
-            // button.addClass("button" + i);
             button.addClass("button");
             button.attr({"selection": arr[i]});
             $("#choices").append(button);
@@ -59,19 +58,22 @@ function correct () {
     $("#choices").html("");
     setTimeout(reset, 5000);
     $("#timer").text("");
+    questionCount++;
 }
 
 function incorrect () {
-    $(".game").html("Incorrect!");
-    $("#choices").html("");
+    $(".game").html("Incorrect! The correct answer was:");
+    $("#choices").html(answers[questionCount]);
     setTimeout(reset, 5000);
     $("#timer").text("");
+    questionCount++;
 }
 
 function noAnswer () {
     $(".game").html("You didn't Answer!");
     $("#choices").html("");
     setTimeout(reset, 5000);
+    questionCount++;
 }
 
 function start () {
@@ -103,12 +105,10 @@ start();
     function check (x) {
         if (x === answers[questionCount]) {
             wins++;
-            questionCount++;
             correct();
         }
         else {
             losses++;
-            questionCount++;
             incorrect();
         }
     }
@@ -140,7 +140,6 @@ function count () {
 
     if (time === 0) {
         noAnswer();
-        questionCount++;
         losses++;
         stop();
         $("#timer").text("");
