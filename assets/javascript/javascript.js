@@ -1,10 +1,20 @@
 // variable here
-var questions = ["Who marries the receptionist?", "What is the correct way to announce someone's birthday?", "What song helped Michael learn the Pledge of Allegiance?"];
+var questions = ["Who marries the receptionist?", "What is the correct way to announce someone's birthday?", "What song helped Michael learn the Pledge of Allegiance?",
+                "Which character was originally supposed to remain written out of the Office?", "How does Pam find out she is pregnant?", "Who has won the most, Hottest In the Office Dundees?",
+                "What was the name of the company Jim helped start?", "Who is believed to be the real Scranton Strangler?", "What was Andy's famous nickname at the end of the series?",
+                "Where do Dwight and Angela get married?", "W"];
 var choices1 = ["Dwight", "Jim", "Toby", "Michael"];
 var choices2 = ["Happy Birthday!", "It's your birthday!", "It is your Birthday.", "It is your Birthday!"];
 var choices3 = ["Old McDonald", "Happy Birthday", "B.I.N.G.O.", "Ring Around the Rosy"];
-var choices = [choices1, choices2, choices3];
-var answers = [choices1[1], choices2[2], choices3[0]];
+var choices4 = ["Pam", "Toby", "Andy", "Ryan"];
+var choices5 = ["Hurting her ankle", "Hitting her head", "Falling down", "Catching the flu"]
+var choices6 = ["Pam", "Angela", "Andy", "Ryan"];
+var choices7 = ["Athleet", "Athlead", "Athlete", "Swoosh"];
+var choices8 = ["Ryan", "Michael", "Dwight", "Toby"];
+var choices9 = ["Drew", "Mr. Cornell", "Big Bear", "Baby Wa Wa"];
+var choices10 = ["Angela's Backyard", "Their graves", "A pool", "At the Office"];
+var choices = [choices1, choices2, choices3, choices4, choices5, choices6, choices7, choices8, choices9, choices10];
+var answers = [choices1[1], choices2[2], choices3[0], choices4[2], choices5[0], choices6[3], choices7[1], choices8[3], choices9[3], choices10[1]];
 var answer = "";
 var wins = 0;
 var losses = 0;
@@ -61,7 +71,17 @@ function noAnswer () {
     setTimeout(reset, 5000);
 }
 
-questionSetup();
+function start () {
+    var button = $("<button>");;
+            button.text("Start");
+            button.addClass("button");
+            $("#choices").append(button);
+
+            $(".button").on("click", function () {
+                reset();
+            })
+}
+start();
     function check (x) {
         if (x === answers[questionCount]) {
             wins++;
@@ -75,13 +95,24 @@ questionSetup();
         }
     }
 
+    function finish () {
+        $(".game").html("");
+        $("#wins").text("Correct: " + wins);
+        $("#losses").text("Incorrect: " + losses);
+    }
+
     function reset () {
         answer = "";
+        if (questionCount < questions.length - 1) {
         $(".game").html("");
         // Add back in when photo added to correct/incorrect screen
         // $("#choices").html("");
         questionSetup();
         time = 30;
+        }
+        else {
+            finish();
+        }
     }
 
 function count () {
