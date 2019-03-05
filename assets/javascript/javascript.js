@@ -27,7 +27,10 @@ $(document).ready(function() {
         var question = $("<div>");
         question.text(questions[questionCount]);
         $(".game").append(question);
-    questionsAnswers(choices[questionCount]);
+        questionsAnswers(choices[questionCount]);
+        $("#wins").text("");
+        $("#losses").text("");
+        $("#timer").text("Time Remaining: " + time);
 
     function questionsAnswers (arr) {
         for (i = 0; i < arr.length; i++) {
@@ -81,6 +84,21 @@ function start () {
                 reset();
             })
 }
+
+function restart () {
+    
+    var button = $("<button>");;
+        button.text("Restart");
+        button.addClass("button");
+        $("#choices").append(button);
+        wins = 0;
+        losses = 0;
+
+        $(".button").on("click", function () {
+            questionCount = 0;
+            reset();
+        })
+}
 start();
     function check (x) {
         if (x === answers[questionCount]) {
@@ -99,6 +117,7 @@ start();
         $(".game").html("");
         $("#wins").text("Correct: " + wins);
         $("#losses").text("Incorrect: " + losses);
+        restart();
     }
 
     function reset () {
@@ -106,7 +125,7 @@ start();
         if (questionCount < questions.length - 1) {
         $(".game").html("");
         // Add back in when photo added to correct/incorrect screen
-        // $("#choices").html("");
+        $("#choices").html("");
         questionSetup();
         time = 30;
         }
@@ -117,7 +136,7 @@ start();
 
 function count () {
     time--;
-    $("#timer").text(time);
+    $("#timer").text("Time Remaining: " + time);
 
     if (time === 0) {
         noAnswer();
