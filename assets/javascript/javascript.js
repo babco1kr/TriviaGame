@@ -8,7 +8,8 @@ var answers = [choices1[1], choices2[2], choices3[0]];
 var answer = "";
 var wins = 0;
 var losses = 0;
-
+var intervalId;
+var time = 30;
 var questionCount = 0;
 
 $(document).ready(function() {
@@ -22,14 +23,18 @@ $(document).ready(function() {
         for (i = 0; i < arr.length; i++) {
             var button = $("<button>");;
             button.text(arr[i]);
-            button.addClass("button" + i);
+            // button.addClass("button" + i);
             button.addClass("button");
             button.attr({"selection": arr[i]});
             $("#choices").append(button);
             
     }
 }
+
+intervalId = setInterval(count, 1000);
+
 $(".button").on("click", function () {
+    stop();
     answer = ($(this).attr("selection"));
     check(answer);
     console.log(answer);
@@ -40,12 +45,20 @@ function correct () {
     $(".game").html("Correct!");
     $("#choices").html("");
     setTimeout(reset, 5000);
+    $("#timer").text("");
 }
 
 function incorrect () {
     $(".game").html("Incorrect!");
     $("#choices").html("");
-    setTimeout(reset, 10000);
+    setTimeout(reset, 5000);
+    $("#timer").text("");
+}
+
+function noAnswer () {
+    $(".game").html("You didn't Answer!");
+    $("#choices").html("");
+    setTimeout(reset, 5000);
 }
 
 questionSetup();
@@ -68,5 +81,23 @@ questionSetup();
         // Add back in when photo added to correct/incorrect screen
         // $("#choices").html("");
         questionSetup();
+        time = 30;
     }
+
+function count () {
+    time--;
+    $("#timer").text(time);
+
+    if (time === 0) {
+        noAnswer();
+        questionCount++;
+        losses++;
+        stop();
+        $("#timer").text("");
+    }
+}
+
+function stop () {
+    clearInterval(intervalId);
+}
 });
