@@ -21,7 +21,7 @@ var answer = "";
 var wins = 0;
 var losses = 0;
 var intervalId;
-var time = 30;
+var time = 0;
 var questionCount = 0;
 
 $(document).ready(function() {
@@ -35,6 +35,7 @@ $(document).ready(function() {
 
     // sets up the question for the game
     function questionSetup () {
+        time = 30;
         var question = $("<div>");
         question.addClass("h3");
         question.text(questions[questionCount]);
