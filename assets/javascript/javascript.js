@@ -6,7 +6,7 @@ var questions = ["Who marries the receptionist?", "What is the correct way to an
 var images = ["assets/images/dancing.gif", "assets/images/dead.gif", "assets/images/fast.gif", "assets/images/fistbump.gif", "assets/images/nightmare.gif", "assets/images/highfive.gif",
             "assets/images/No.gif", "assets/images/true.gif", "assets/images/surprised.gif", "assets/images/snow.gif"];
 var choices1 = ["Dwight", "Jim", "Toby", "Michael"];
-var choices2 = ["Happy Birthday!", "It's your birthday!", "It is your Birthday.", "It is your Birthday!"];
+var choices2 = ["HAPPY BIRTHDAY!", "IT'S YOUR BIRTHDAY!", "IT IS YOUR BIRTHDAY.", "IT IS YOUR BIRTHDAY!"];
 var choices3 = ["Old McDonald", "Happy Birthday", "B.I.N.G.O.", "Ring Around the Rosy"];
 var choices4 = ["Pam", "Toby", "Andy", "Ryan"];
 var choices5 = ["Hurting her ankle", "Hitting her head", "Falling down", "Catching the flu"]
@@ -65,7 +65,7 @@ $(".button").on("click", function () {
     stop();
     answer = ($(this).attr("selection"));
     check(answer);
-    console.log(answer);
+    // console.log(answer);
 })
 }
 
