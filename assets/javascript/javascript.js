@@ -3,6 +3,8 @@ var questions = ["Who marries the receptionist?", "What is the correct way to an
                 "Which character was originally supposed to remain written out of the Office?", "How does Pam find out she is pregnant?", "Who has won the most, Hottest In the Office Dundees?",
                 "What was the name of the company Jim helped start?", "Who is believed to be the real Scranton Strangler?", "What was Andy's famous nickname at the end of the series?",
                 "Where do Dwight and Angela get married?", "W"];
+var images = ["assets/images/dancing.gif", "assets/images/dead.gif", "assets/images/fast.gif", "assets/images/fistbump.gif", "assets/images/nightmare.gif", "assets/images/highfive.gif",
+            "assets/images/No.gif", "assets/images/true.gif", "assets/images/surprised.gif", "assets/images/snow.gif"];
 var choices1 = ["Dwight", "Jim", "Toby", "Michael"];
 var choices2 = ["Happy Birthday!", "It's your birthday!", "It is your Birthday.", "It is your Birthday!"];
 var choices3 = ["Old McDonald", "Happy Birthday", "B.I.N.G.O.", "Ring Around the Rosy"];
@@ -70,6 +72,10 @@ $(".button").on("click", function () {
 function correct () {
     $(".game").html("Correct!");
     $("#choices").html("");
+    var image = $("<img>");
+    image.attr("src", images[questionCount]);
+    image.addClass("row");
+    $("#choices").append(image);
     setTimeout(reset, 5000);
     $("#timer").text("");
     questionCount++;
@@ -79,6 +85,10 @@ function correct () {
 function incorrect () {
     $(".game").html("Incorrect! The correct answer was:");
     $("#choices").html(answers[questionCount]);
+    var image = $("<img>");
+    image.attr("src", images[questionCount]);
+    image.addClass("row");
+    $("#choices").append(image);
     setTimeout(reset, 5000);
     $("#timer").text("");
     questionCount++;
@@ -86,8 +96,12 @@ function incorrect () {
 
 // What happens if the user doesnt answer before time expires
 function noAnswer () {
-    $(".game").html("You didn't Answer!");
-    $("#choices").html("");
+    $(".game").html("You didn't Answer! The correct answer was:");
+    $("#choices").html(answers[questionCount]);
+    var image = $("<img>");
+    image.attr("src", images[questionCount]);
+    image.addClass("row");
+    $("#choices").append(image);
     setTimeout(reset, 5000);
     questionCount++;
 }
@@ -98,7 +112,6 @@ function start () {
         button.text("Start");
         button.addClass("button");
         $("#choices").append(button);
-
         $(".button").on("click", function () {
             reset();
         })
