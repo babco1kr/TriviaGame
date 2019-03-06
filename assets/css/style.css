@@ -15,15 +15,6 @@ body {
     margin: auto
 }
 
-/* header {
-    background-image: url(../images/office\ header.jpg);
-    height: 200px;
-} */
-
-#choices {
-    margin: auto;
-}
-
 .row {
     margin: auto;
 }
@@ -35,4 +26,9 @@ button {
     cursor:pointer;
     overflow: hidden;
     outline:none;
+    width: 400px;
+}
+
+button:hover {
+    background-color: rgb(255, 35, 75, 0.25);
 }

@@ -49,7 +49,7 @@ $(document).ready(function() {
         for (i = 0; i < arr.length; i++) {
             var button = $("<button>");;
             button.text(arr[i]);
-            button.addClass("button row");
+            button.addClass("button");
             button.attr({"selection": arr[i]});
             $("#choices").append(button);
             
@@ -149,6 +149,7 @@ start();
     // Page displayed at the end of the game
     function finish () {
         $(".game").html("");
+        $("#choices").html("");
         $("#wins").text("Correct: " + wins);
         $("#losses").text("Incorrect: " + losses);
         restart();
