@@ -1,3 +1,18 @@
 body {
-    background: red;
+    background: gray;
+    width: 960px;
+    margin: auto;
+}
+
+header {
+    background-image: url(../images/office\ header.jpg);
+    height: 200px;
+}
+
+#choices {
+    margin: auto;
+}
+
+.row {
+    margin: auto;
 }

@@ -23,8 +23,18 @@ var time = 30;
 var questionCount = 0;
 
 $(document).ready(function() {
+
+    // assigning classes to id's and classes used later
+    $("#timer").addClass("h2");
+    $("#wins").addClass("h2");
+    $("#losses").addClass("h2");
+    $(".game").addClass("h2");
+    $("#choices").addClass("h2");
+
+    // sets up the question for the game
     function questionSetup () {
         var question = $("<div>");
+        question.addClass("h3");
         question.text(questions[questionCount]);
         $(".game").append(question);
         questionsAnswers(choices[questionCount]);
@@ -32,19 +42,22 @@ $(document).ready(function() {
         $("#losses").text("");
         $("#timer").text("Time Remaining: " + time);
 
+    // Adds the buttons and their unique choices to the page
     function questionsAnswers (arr) {
         for (i = 0; i < arr.length; i++) {
             var button = $("<button>");;
             button.text(arr[i]);
-            button.addClass("button");
+            button.addClass("button row");
             button.attr({"selection": arr[i]});
             $("#choices").append(button);
             
     }
 }
 
+// Defines interval for the game time counter
 intervalId = setInterval(count, 1000);
 
+// Onclick functionality for the game and buttons assigned
 $(".button").on("click", function () {
     stop();
     answer = ($(this).attr("selection"));
@@ -53,6 +66,7 @@ $(".button").on("click", function () {
 })
 }
 
+// What happens if the user guesses correct answer
 function correct () {
     $(".game").html("Correct!");
     $("#choices").html("");
@@ -61,6 +75,7 @@ function correct () {
     questionCount++;
 }
 
+// What happens if user guesses the incorrect answer
 function incorrect () {
     $(".game").html("Incorrect! The correct answer was:");
     $("#choices").html(answers[questionCount]);
@@ -69,6 +84,7 @@ function incorrect () {
     questionCount++;
 }
 
+// What happens if the user doesnt answer before time expires
 function noAnswer () {
     $(".game").html("You didn't Answer!");
     $("#choices").html("");
@@ -76,17 +92,19 @@ function noAnswer () {
     questionCount++;
 }
 
+// Sets up the button that when clicked starts the entire game
 function start () {
-    var button = $("<button>");;
-            button.text("Start");
-            button.addClass("button");
-            $("#choices").append(button);
+    var button = $("<button>");
+        button.text("Start");
+        button.addClass("button");
+        $("#choices").append(button);
 
-            $(".button").on("click", function () {
-                reset();
-            })
+        $(".button").on("click", function () {
+            reset();
+        })
 }
 
+// Function that resets the entire game at the end if user wants to play again
 function restart () {
     
     var button = $("<button>");;
@@ -101,6 +119,8 @@ function restart () {
             reset();
         })
 }
+
+// Calls function start that gives the user the option to play the game
 start();
     function check (x) {
         if (x === answers[questionCount]) {
@@ -113,6 +133,7 @@ start();
         }
     }
 
+    // Page displayed at the end of the game
     function finish () {
         $(".game").html("");
         $("#wins").text("Correct: " + wins);
@@ -120,11 +141,11 @@ start();
         restart();
     }
 
+    // Function that moves onto the next question or finishes the game if there arent any remaining questions
     function reset () {
         answer = "";
         if (questionCount < questions.length - 1) {
         $(".game").html("");
-        // Add back in when photo added to correct/incorrect screen
         $("#choices").html("");
         questionSetup();
         time = 30;
@@ -134,6 +155,7 @@ start();
         }
     }
 
+// Timer for the game
 function count () {
     time--;
     $("#timer").text("Time Remaining: " + time);
@@ -146,6 +168,7 @@ function count () {
     }
 }
 
+// Stops the counter when it reaches 0 after being called
 function stop () {
     clearInterval(intervalId);
 }
