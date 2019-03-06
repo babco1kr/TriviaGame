@@ -2,7 +2,7 @@
 var questions = ["Who marries the receptionist?", "What is the correct way to announce someone's birthday?", "What song helped Michael learn the Pledge of Allegiance?",
                 "Which character was originally supposed to remain written out of the Office?", "How does Pam find out she is pregnant?", "Who has won the most, Hottest In the Office Dundees?",
                 "What was the name of the company Jim helped start?", "Who is believed to be the real Scranton Strangler?", "What was Andy's famous nickname at the end of the series?",
-                "Where do Dwight and Angela get married?", "W"];
+                "Where do Dwight and Angela get married?"];
 var images = ["assets/images/dancing.gif", "assets/images/dead.gif", "assets/images/fast.gif", "assets/images/fistbump.gif", "assets/images/nightmare.gif", "assets/images/highfive.gif",
             "assets/images/No.gif", "assets/images/true.gif", "assets/images/surprised.gif", "assets/images/snow.gif"];
 var choices1 = ["Dwight", "Jim", "Toby", "Michael"];
@@ -159,7 +159,7 @@ start();
     // Function that moves onto the next question or finishes the game if there arent any remaining questions
     function reset () {
         answer = "";
-        if (questionCount < questions.length - 1) {
+        if (questionCount < questions.length) {
         $(".game").html("");
         $("#choices").html("");
         questionSetup();
