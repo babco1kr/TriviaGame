@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     // sets up the question for the game
     function questionSetup () {
-        time = 30;
+        time = 20;
         var question = $("<div>");
         question.addClass("h3");
         question.text(questions[questionCount]);
@@ -163,7 +163,7 @@ start();
         $(".game").html("");
         $("#choices").html("");
         questionSetup();
-        time = 30;
+        time = 20;
         }
         else {
             finish();
